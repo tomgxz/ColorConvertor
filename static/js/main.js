@@ -17,6 +17,10 @@ function rgbOutputToStr(rgb) {
     return rgb.r+","+rgb.b+","+rgb.g
 }
 
+function displayColor() {
+    document.querySelector(".coloroutput").style.backgroundColor=hexinput.value
+}
+
 var form=document.getElementById("colorconversionform")
 var rgbinput=form.querySelector(".input.rgb")
 var hexinput=form.querySelector(".input.hex")
@@ -26,6 +30,7 @@ rgbinput.addEventListener("keyup",()=>{
     if(!(value.length==3)){return}
     for(var i=0;i<value.length;i++){value[i]=parseInt(value[i]);if(isNaN(value[i])){return}}
     hexinput.value="#"+rgbToHex(value[0],value[1],value[2])
+    displayColor()
 })
 
 hexinput.addEventListener("keyup",()=>{
@@ -33,4 +38,5 @@ hexinput.addEventListener("keyup",()=>{
     if(value[0]=="#"){value=value.slice(1)}
     if(!(value.length==6)){return}
     rgbinput.value=rgbOutputToStr(hexToRgb(value))
+    displayColor()
 })
